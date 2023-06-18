@@ -1,5 +1,8 @@
-<% layout('layouts/boilerplate')%>
+<% layout('./layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/stars.css">
+
+
+
 <div class="row">
     <div class="col-6">
         <div id="campgroundCarousel" class="carousel slide" data-ride="carousel">
@@ -14,11 +17,11 @@
             <% if(campground.images.length > 1) {%>
             <a class="carousel-control-prev" href="#campgroundCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+                <span class="sr-only"></span>
             </a>
             <a class="carousel-control-next" href="#campgroundCarousel" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+                <span class="sr-only"></span>
             </a>
             <% } %>
         </div>
@@ -47,11 +50,14 @@
         </div>
 
     </div>
-    <div class="col-6">
-        <div id='map' ></div>
+    <div class="col-6 ">
+        <div style="overflow: hidden;">
+            <div id='map' style='width: 100%; height: 300px;'></div>
+
+        </div>
 
         <% if(currentUser){ %>
-        <h2>Leave a Review</h2>
+        <h2 style="margin-top: 41px; z-index:1">Leave a Review</h2>
         <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
             <!-- <div class="mb-3">
                 <label class="form-label" for="rating">Rating</label>
@@ -82,7 +88,7 @@
         </form>
         <% } %>
         <% for(let review of campground.reviews) { %>
-        <div class="card mb-3 ">
+        <div class="card mb-3  ">
             <div class="card-body">
                 <h5 class="card-title"> <%= review.author.username%></h5>
                 <p class="starability-result" data-rating="<%=review.rating%>">
